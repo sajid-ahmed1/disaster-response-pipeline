@@ -40,6 +40,9 @@ def clean_data(df):
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
 
+    # drop rows where any category has a value of 2 (ADDED IN FROM FEEDBACK)
+    categories = categories[~(categories == 2).any(axis=1)]
+
     # drop the original categories column from `df`
     df.drop('categories',axis=1, inplace=True)
     
